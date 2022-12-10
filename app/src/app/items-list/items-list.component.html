@@ -1,1 +1,51 @@
-<p>items-list works!</p>
+<!-- list of products (for each) -->
+<div class="products" >
+  <div class="our_products">
+    <div class="row" *ngFor="let item of itemsList">
+      <div class="col-md-4 margin_bottom1">
+        <div class="product_box">
+          <figure>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAMCJFc2pObsJgTuDdo0UH6Cpc_9Dje18IJw&usqp=CAU"
+              alt="#"
+            />
+          </figure>
+          <h3>{{ item.title }}<br /><br />{{ item.price }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- </div> -->
+
+  <!-- <body> -->
+  <!-- <div *ngif="!themeList"></div>
+  <div *ngfor="let theme of themeList" class="theme-container">
+    <div class="theme-name-wrapper">
+      <div class="theme-name">
+        <a routerlink="/theme/detail/:id" class="normal">
+          <h2>{{ theme.themeName }}</h2>
+        </a>
+        <div class="columns">
+          <div>
+            <p>
+              Date: <time>{{ theme.created_at }}</time>
+            </p>
+            <div class="nick-name">
+              <p>
+                Username: <span>{{ theme.userId.username }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="subscribers">
+            <button class="subscribe">Subscribe</button>
+            <p>
+              Subscribers: <span>{{ theme.subscribers.length }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- </body> -->
+</div>

@@ -1,7 +1,7 @@
 /* Homepage */
  .container {
     display: flex;
-    height: 90vh;
+    height: 85vh;
     justify-content: space-around;
     align-items: center;
     color: #fff;
@@ -18,7 +18,7 @@
   }
   
   .container_content_inner {
-    width: 80%;
+    width: 70%;
     margin-left: 80px;
   }
   
@@ -39,30 +39,31 @@
   }
   
   p{
-    font-size: 50px;
-    line-height: 35px;
+    font-size: 30px;
+    line-height: inherit;
     transform: translateY(300px);
     animation: slideUp 1.5s ease-in-out forwards .8s;
-    margin-bottom: 10px;
   }
   
   .btns {
+    margin-top: 30px;
     height: 100%;
     position: relative;
-    width: 150px;
+    width: 100%;
     overflow: hidden;
   }
   
   .btns_more {
-    background: transparent;
+    width: 100%;
+    background: (--contrast-color);
     border: 1px solid var(--contrast-color);
     border-radius: 50px;
     padding: 8px 12px;
-    color: #BF307F;
+    color: #6c0187;
     font-size: 25px;
     text-transform: uppercase;
     position: relative;
-    margin-top: 15px;
+    margin-top: 0px;
     outline: none;
     transform: translateY(50px);
     animation: slideUp 1.5s ease-in-out  forwards 1s;
