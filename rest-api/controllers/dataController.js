@@ -16,6 +16,18 @@ dataController.get('/', async (req, res) => {
     res.json(items);
 });
 
+
+dataController.get('/', async (req, res) => {
+    let items = [];
+    if (req.query.where) {
+        const userId = JSON.parse(req.query.where.split('=')[1]);
+        items = await getByUserId(userId);
+    } else {
+        items = await getAll();
+    }
+    res.json(items);
+});
+
 dataController.post('/', hasUser(), async (req, res) => {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body);

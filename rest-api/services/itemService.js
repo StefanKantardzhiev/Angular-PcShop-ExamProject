@@ -6,7 +6,7 @@ async function getAll() {
 }
 
 async function getByUserId(userId) {
-    return Item.find({ _ownerId: userId });
+    return Item.find({ userId: userId });
 }
 
 async function getById(id) {
