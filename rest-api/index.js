@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const apiRouter = require('./router')
 const cors = require('./middlewares/cors');
 const trimBody = require('./middlewares/trimBody');
 const session = require('./middlewares/session');

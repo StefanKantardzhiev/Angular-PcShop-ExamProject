@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "5fa64a9f2183ce1728ff371b"
+  },
+  "title": "AMD RYZEN Computer",
+  "description": "Great PC for gaming and coding!",
+  "price": "1200 EUR",
+  "img": "https://www.mifcom.de/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/i/m/img_0031_2.jpg",
+  "userId": {
+    "$oid": "5fa64a072183ce1728ff3719"
+  },
+  "itemId": {
+    "$oid": "5fa64a9f2183ce1728ff371a"
+  },
+  "created_at": "2020-11-07T07:19:59.994+00:00",
+  "updatedAt": "2020-11-07T07:19:59.994+00:00",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6394715e632212478704f5c5"
+  },
+  "title": "Intel Core i5 Computer",
+  "description": "Great PC for gaming and coding!",
+  "price": "1000 EUR",
+  "img": "https://www.mifcom.de/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/i/m/img_0031_2.jpg",
+  "userId": {
+    "$oid": "5fa64a072183ce1728ff3719"
+  },
+  "itemId": {
+    "$oid": "5fa64a9f2183ce1728ff371a"
+  },
+  "created_at": "2020-11-07T07:19:59.994+00:00",
+  "updatedAt": "2020-11-07T07:19:59.994+00:00",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6394721d632212478704f5cb"
+  },
+  "title": "Intel Core i7 Computer",
+  "description": "Great PC for gaming and coding!",
+  "price": "2000 EUR",
+  "img": "https://www.mifcom.de/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/i/m/img_0031_2.jpg",
+  "userId": {
+    "$oid": "5fa64a072183ce1728ff3719"
+  },
+  "itemId": {
+    "$oid": "5fa64a9f2183ce1728ff371a"
+  },
+  "created_at": "2020-11-07T07:19:59.994+00:00",
+  "updatedAt": "2020-11-07T07:19:59.994+00:00",
+  "__v": 0
+}]
