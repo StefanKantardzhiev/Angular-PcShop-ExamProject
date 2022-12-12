@@ -1,9 +1,15 @@
 footer {
     background: rgb(0, 0, 0);
-    width: 100%;
+       
+text-align: center;
+width: 100%;
+position: absolute;
+bottom: 0;
+padding: 1em;
 }
 footer h1 {
+    font-family: 'Comic-Sans',cursive;
     color: white;
-    margin-left: 40%;
 }
+
 

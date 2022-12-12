@@ -1,6 +1,7 @@
 .products {
     background:  rgb(70, 1, 110) 25%;
     text-align: center;
+    margin-top: 5%;
     font-family: "Comic-Sans",cursive;
     color:white;
     font-size: 30px;
@@ -10,11 +11,10 @@
 
 .our_products {
     background-color: #fff;
-    padding: 90px 20px;
     display: grid;
     justify-content: center;
-    grid-template-columns: 200px 200px 200px 200px; /*Make the grid smaller than the container*/
-    gap: 10%;
+    grid-template-columns: 200px 200px 200px; /*Make the grid smaller than the container*/
+    gap: 20%;
 
 }
 
@@ -46,5 +46,5 @@
 }
 
 .margin_bottom1 {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }

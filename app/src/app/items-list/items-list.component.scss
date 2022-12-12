@@ -8,13 +8,14 @@
 }
 
 
+
 .our_products {
     background-color: #fff;
-    padding: 90px 20px;
+    padding: 50px 50px;
     display: grid;
     justify-content: center;
-    grid-template-columns: 200px 200px 200px 200px; /*Make the grid smaller than the container*/
-    gap: 10%;
+    grid-template-columns:  400px 400px 400px; /*Make the grid smaller than the container*/
+    gap: 7%;
 
 }
 
@@ -46,5 +47,5 @@
 }
 
 .margin_bottom1 {
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 }
