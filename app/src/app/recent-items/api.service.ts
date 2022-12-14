@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   loadItems() {
-    return this.httpClient.get<IItem[]>(`http://127.0.0.1:3000/items/catalog`);
+    return this.httpClient.get<IItem[]>(`${apiUrl}/items/catalog`);
   }
   loadRecent() {
     return this.httpClient.get<IRecent[]>(`${apiUrl}/recent/catalog`);

@@ -19,10 +19,12 @@ export class LoginComponent {
     if (form.invalid) {
       return;
     }
-    const { email, password } = form.value;
-    this.authService.login(email!, password!).subscribe((user) => {
-      this.authService.user = user;
-      this.router.navigate(['/items/catalog']);
-    });
+
+    this.authService.user = {
+      email: 'peter@gmail.bg',
+    } as any;
+    const returnUrl =
+      this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([returnUrl]);
   }
 }

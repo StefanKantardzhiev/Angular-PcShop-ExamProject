@@ -5,7 +5,7 @@ const trimBody = require('./middlewares/trimBody');
 const session = require('./middlewares/session');
 const dataController = require('./controllers/dataController')
 const recentController = require('./controllers/recentController')
-
+const authController = require('./controllers/authController')
 
 const connectionString = 'mongodb://127.0.0.1:27017/pcbuildz';
 
@@ -30,6 +30,7 @@ async function start() {
     // app.use('/users');
     app.use('/items/catalog', dataController);
     app.use('/recent/catalog',recentController);
+    app.use('/auth/',authController)
 
     app.listen(3000, () => console.log('REST service started on port 3000!'));
 }

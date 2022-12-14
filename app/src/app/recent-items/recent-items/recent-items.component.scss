@@ -1,0 +1,50 @@
+.products {
+    background:  rgb(70, 1, 110) 25%;
+    text-align: center;
+    margin-top: 5%;
+    font-family: "Comic-Sans",cursive;
+    color:white;
+    font-size: 30px;
+    font-style: italic;
+}
+
+
+.our_products {
+    background-color: #fff;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 200px 200px 200px; /*Make the grid smaller than the container*/
+    gap: 20%;
+
+}
+
+.our_products .product_box {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.our_products .product_box figure {
+    margin: 0;
+}
+
+.our_products .product_box h3 {
+    width: 200px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: #252525;
+    font-weight: 500;
+    margin: 0 auto;
+    padding: 10px 0;
+    margin-top: 40px;
+    transition: ease-in all 0.5s;
+}
+
+.our_products .product_box h3:hover {
+   background: rgb(70, 1, 110) 25%;
+   transition: ease-in all 0.5s;
+}
+
+.margin_bottom1 {
+    margin-bottom: 30px;
+}
