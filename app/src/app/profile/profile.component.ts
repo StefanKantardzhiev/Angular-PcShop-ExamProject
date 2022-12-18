@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { appEmailDomains } from 'src/app/shared/constants';
-import { appEmailValidator } from '../shared/validators/app-email-validator';
 import { AuthService } from '../auth/auth.service';
+import { IItem } from '../interfaces/item';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,34 +9,28 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  showEditMode = false;
+  itemsList: IItem[] | null = null;
+
+  constructor(
+    private apiService: ApiService,
+    private authService: AuthService
+  ) {}
+
   get user() {
-    const { email, img } = this.authService.user!;
+    const { email } = this.authService.user!;
     return {
       email,
-      img,
     };
   }
-  form = this.fb.group({
-    email: ['', [Validators.required, appEmailValidator(appEmailDomains)]],
-    img: ['', Validators.required],
-  });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
-
-  toggleEditMode(): void {
-    this.showEditMode = !this.showEditMode;
-  }
-
-  saveProfile(): void {
-    if (this.form.invalid) {
-      return;
-    }
-    const { email, img } = this.form.value;
-    this.authService.user = {
-      email,
-      img,
-    } as any;
-    this.toggleEditMode();
+  ngOnInit(): void {
+    this.apiService.getByOwner().subscribe({
+      next: (value) => {
+        this.itemsList = value;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }

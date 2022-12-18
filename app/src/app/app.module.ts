@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
     NewItemComponent,
     ProfileComponent,
     ItemDetailComponent,
-    ItemEditComponent
+    ItemEditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutingModule,

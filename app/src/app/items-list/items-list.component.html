@@ -6,11 +6,8 @@
               alt="#"
             />
           </figure>
-          <h3><a routerLink="">{{ item.title }}</a></h3>
+          <h3><a routerLink="/items/catalog/{{item._id}}">{{ item.title }}</a></h3>
            <h2>{{ item.price }} Euro</h2><br>
-           <div  class="product_box" *ngFor="let desc of item.description">
-            <p>{{desc}}</p>
-          </div>
         </div>
       </div>
 

@@ -1,43 +1,32 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = Number(process.env.SALTROUNDS) || 5;
-
-// const { ObjectId } = mongoose.Schema.Types;
-
+const bcrypt = require('bcrypt')
 const userSchema = new mongoose.Schema({
     email: {
-        type: String,
         required: true,
-        unique: true,
+        type: String,
     },
-    password: { type: String, required: true },
-    img: { type: String, required: true },
-    accessToken: { type: String }
-}, { timestamps: { createdAt: 'created_at' } });
-
-userSchema.methods = {
-    matchPassword: function (password) {
-        return bcrypt.compare(password, this.password);
+    password: {
+        required: true,
+        type: String,
+        minlength: [6, 'Password should have at least 5 characters!'],
+        maxlength: [12, 'Password cannot have more than 12 characters!'],
+    },
+    items: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Item',
+        }
+    ],
+    img: {
+        type: String,
     }
-}
-
+})
 userSchema.pre('save', function (next) {
-    if (this.isModified('password')) {
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            if (err) {
-                next(err);
-            }
-            bcrypt.hash(this.password, salt, (err, hash) => {
-                if (err) {
-                    next(err);
-                }
-                this.password = hash;
-                next();
-            })
+    bcrypt.hash(this.password, 10)
+        .then((hash) => {
+            this.password = hash
+            return next()
         })
-        return;
-    }
-    next();
-});
-
-module.exports = mongoose.model('User', userSchema);
+})
+const user = new mongoose.model('User', userSchema);
+module.exports = user;

@@ -1,15 +1,12 @@
-<div class="our_products" *ngFor="let recent of recentList">
+<div class="our_products" *ngFor="let item of recentList">
   <div class="product_box" >
     <figure>
       <img
-        src="{{recent.img}}"
+        src="{{item.img}}"
         alt="#"
       />
     </figure>
-    <h3><a href="items/catalog/:id"></a>{{ recent.title }}</h3>
-     <h3>{{ recent.price }} Euro</h3><br>
-     <div  class="product_box" *ngFor="let item of recent.description">
-      <p>{{item}}</p>
-    </div>
+    <h3><a routerLink="/items/catalog/{{item._id}}">{{ item.title }}</a></h3>
+     <h3>{{ item.price }} Euro</h3><br>
   </div>
 </div>

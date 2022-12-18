@@ -1,77 +1,93 @@
+const User = require('../models/User');
+
+const { getRecent, getItemById, updateItem, deleteItem, getAllBuildz, getByOwner, addBuild } = require('../services/itemService');
+const { updateUserItems } = require('../services/userService');
+
 const dataController = require('express').Router();
 
-const { hasUser } = require('../middlewares/guards');
-const { getAll, create, getById, update, deleteById, getByUserId } = require('../services/itemService');
-const { parseError } = require('../util/parser');
 
+//create Item
+dataController.post('/create', async (req, res) => {
+    const data = req.body;
+    try {
+        const userId = req?.user?._id;
+        const item = await addBuild(data, userId)
+        await updateUserItems(userId, item._id)
+        res.status(201).json(item)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ error: error.message })
+    }
+})
 
+//get All Items
 dataController.get('/', async (req, res) => {
-    let items = [];
-    // if (req.query.where) {
-    //     const userId = JSON.parse(req.query.where.split('=')[1]);
-    //     items = await getByUserId(userId);
-    // } else {
-        items = await getAll();
-    res.json(items);
+    const items = await getAllBuildz()
+    res.status(200).json(items)
 });
 
 
-dataController.get('/:userId', async (req, res) => {
-    let items = [];
-    if (req.query.where) {
-        const userId = JSON.parse(req.query.where.split('=')[1]);
-        items = await getByUserId(userId);
-    }
-    // } else {
-    //     items = await getAll();
-    // }
-    res.json(items);
-});
+//get most recent items
+dataController.get('/recent-buildz', async (req, res) => {
+    const items = await getRecent()
+    res.status(200).json(items);
+})
 
-dataController.post('/create', hasUser(), async (req, res) => {
-    try {
-        const data = Object.assign({ _ownerId: req.user._id }, req.body);
-        const item = await create(data);
-        res.json(item);
-    } catch (err) {
-        const message = parseError(err);
-        res.status(400).json({ message });
-    }
-});
-
+//get item by ID
 dataController.get('/:id', async (req, res) => {
-    const item = await getById(req.params._id);
-    res.json(item);
-});
-
-dataController.put('/:id', hasUser(), async (req, res, next) => {
-    const item = await getById(req.params._id);
-    if (req.user._id != item._ownerId) {
-        return res.status(403).json({ message: 'You cannot modify this record' });
-    }
-
     try {
-        const result = await update(req.params.id, req.body);
-        res.json(result);
-    } catch (err) {
-        const message = parseError(err);
-        res.status(400).json({ message });
+        let id = req.params.id;
+        const item = await getItemById(id);
+        if (item) {
+            res.status(200).json(item)
+        } else {
+            throw new Error('Invalid item ID!')
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ error: error.message })
     }
 });
 
-dataController.delete('/:id', hasUser(), async (req, res) => {
-    const item = await getById(req.params._id);
-    if (req.user._id != item._ownerId) {
-        return res.status(403).json({ message: 'You cannot modify this record' });
-    }
-
+//update Item by ID
+dataController.put('/edit/:id', async (req, res) => {
     try {
-        await deleteById(req.params._id);
-        res.status(204).end();
+        const item = await getItemById(req.params.id);
+
+        if (req.user._id != item._ownerId) {
+            return res.status(403).json({ message: 'You cannot edit this item' })
+        }
+        const result = await updateItem(req.params.id, req.body);
+        res.status(200).json(result)
     } catch (err) {
-        const message = parseError(err);
-        res.status(400).json({ message });
+        console.log(err);
+        res.status(400).json({ error: err.message })
     }
 });
+
+
+
+// delete item
+dataController.delete('/:id', async (req, res) => {
+    try {
+        const bike = await getItemById(req.params.id);
+        if (req.user._id != bike._ownerId._id) {
+            return res.status(403).json({ err: err.message })
+        }
+        await deleteItem(req.params.id);
+        res.status(204).end()
+    } catch (err) {
+        res.status(400).json({ err: err.message })
+    }
+});
+
+
+
+
+
+
+
+
+
 
 module.exports = dataController;

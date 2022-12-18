@@ -1,69 +1,74 @@
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const server = require('../environment')
+const User = require('../models/User')
 
-
-const secret = 'q-90234xcwmietvuselrg';
-
-const tokenBlacklist = new Set();
-
-async function register(email, password, img) {
-    const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
-    if (existing) {
-        throw new Error('Email is taken');
+const validateToken = (token) => {
+    try {
+        const data = jwt.verify(token, server.SECRET_KEY)
+        return data
+    } catch (error) {
+        throw new Error('Invalid access token!')
     }
-
-    const user = await User.create({
-        email,
-        img,
-        hashedPassword: await bcrypt.hash(password, 10)
-    });
-
-    return createToken(user);
 }
-
-async function login(email, password) {
-    const user = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
-    if (!user) {
-        throw new Error('Incorrect email or password');
-    }
-
-    const match = await bcrypt.compare(password, user.hashedPassword);
-    if (!match) {
-        throw new Error('Incorrect email or password');
-    }
-
-    return createToken(user);
-}
-
-async function logout(token) {
-    tokenBlacklist.add(token);
-}
-
-function createToken(user) {
+const createAccessToken = (user) => {
     const payload = {
         _id: user._id,
         email: user.email
-    };
-
+    }
+    const accessToken = jwt.sign(payload, server.SECRET_KEY)
     return {
-        _id: user._id,
         email: user.email,
-        accessToken: jwt.sign(payload, secret)
+        accessToken,
+        _id: user._id
     };
 }
+const register = async (email, password) => {
+    const existingEmail = await User.findOne({ email })
 
-function parseToken(token) {
-    if (tokenBlacklist.has(token)) {
-        throw new Error('Token is blacklisted');
+
+    if (existingEmail) {
+        throw new Error('Email already exists!')
     }
 
-    return jwt.verify(token, secret);
+    const user = await User.create({ email, password })
+    return createAccessToken(user)
 }
 
+
+
+const login = async (email, password) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+        throw new Error('Invalid email or password!')
+    }
+    const isUser = await bcrypt.compare(password, user.password)
+    if (isUser) {
+        return createAccessToken(user)
+    } else {
+        throw new Error('Invalid email or password!')
+    }
+}
+
+const updateUserItems = async (_id, itemId) => {
+    try {
+        const user = await User.findById(_id);
+        let itemsArr = user.items
+        itemsArr.push(itemId)
+        await User.findByIdAndUpdate(_id, { items: itemsArr })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const logout = (token) => {
+    blacklist.add(token)
+}
 module.exports = {
-    register,
     login,
-    logout,
-    parseToken
-};
+    register,
+    createAccessToken,
+    validateToken,
+    updateUserItems,
+    logout
+}

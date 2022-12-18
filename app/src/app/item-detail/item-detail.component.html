@@ -8,9 +8,7 @@
             <h2>£{{ item?.price }}</h2><br>
             <p>{{item?.description}}</p>
         </div>
-        <ng-container *ngIf="!owner">
-            <button type="submit" class="btn">Like</button>
-        </ng-container>
+       
         <ng-container *ngIf="owner">
             <button [routerLink]="['/items/catalog/edit/', item?._id]" type="submit" class="btn">Edit</button>
             <button (click)="deleteItemHandler()" type="submit" class="btn">Delete</button>

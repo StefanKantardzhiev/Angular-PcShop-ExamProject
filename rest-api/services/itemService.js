@@ -1,43 +1,54 @@
-const Item = require('../models/Item');
+const Item = require("../models/Item")
+const User = require("../models/User")
 
+require('dotenv').config()
 
-async function getAll() {
-    return Item.find({});
+async function addBuild(item, id) {
+    try {
+        item.owner = id;
+        return await Item.create({ ...item })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+async function getAllBuildz() {
+    return await Item.find({}).sort({ created_at: -1 });
 }
 
-async function getByUserId(userId) {
-    return Item.find({ _ownerId: userId });
+async function getItemById(id) {
+    return await Item.findById(id);
 }
 
-async function getById(id) {
-    return Item.findById(id);
-}
-
-async function create(item) {
-    return Item.create(item);
-}
-
-async function update(id, item) {
+async function updateItem(id, item) {
     const existing = await Item.findById(id);
 
-    existing.name = item.make;
+    existing.title = item.title;
     existing.description = item.description;
     existing.price = item.price;
-    existing.img = item.img;
 
     return existing.save();
 }
 
-async function deleteById(id) {
-    return Item.findByIdAndDelete(id);
+async function deleteItem(id) {
+    await Item.findByIdAndDelete(id)
+}
+
+async function getRecent() {
+    const Items = await Item.find({}).sort({ created_at: -1 }).limit(3);
+    return Items
+}
+
+async function getByOwner(id) {
+    return await Item.find({ _ownerId: id })
 }
 
 
 module.exports = {
-    getAll,
-    getByUserId,
-    getById,
-    create,
-    update,
-    deleteById
-};
+    addBuild,
+    getAllBuildz,
+    getItemById,
+    updateItem,
+    deleteItem,
+    getRecent,
+    getByOwner
+}

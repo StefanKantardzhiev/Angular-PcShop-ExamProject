@@ -17,7 +17,7 @@ export class ApiService {
     return this.http.get<IItem[]>(`${apiUrl}/items/catalog`);
   }
   loadRecent() {
-    return this.http.get<IItem[]>(`${apiUrl}/items/catalog/recent`);
+    return this.http.get<IItem[]>(`${apiUrl}/items/catalog/recent-buildz`);
   }
 
   loadItemById(id: string) {
@@ -25,15 +25,15 @@ export class ApiService {
   }
 
   updateItem(id: string | undefined, item: {}) {
-    return this.http.put<IItem>(`${apiUrl}/items/catalog/${id}`, item);
+    return this.http.put<IItem>(`${apiUrl}/items/catalog/edit/${id}`, item);
   }
 
   deleteItem(id: string | undefined) {
-    return this.http.delete(`${apiUrl}items/catalog/${id}`);
+    return this.http.delete(`${apiUrl}/items/catalog/${id}`);
   }
 
   getByOwner() {
-    return this.http.get<IItem[]>(`${apiUrl}auth/profile`);
+    return this.http.get<IItem[]>(`${apiUrl}/auth/profile`);
   }
 
   addPc(data: {}) {

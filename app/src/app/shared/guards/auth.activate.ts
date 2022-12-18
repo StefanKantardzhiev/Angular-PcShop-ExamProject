@@ -13,6 +13,8 @@ import { ApiService } from 'src/app/api.service';
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class AuthActivate implements CanActivate {
   constructor(private apiService: ApiService, private router: Router) {}
   canActivate(

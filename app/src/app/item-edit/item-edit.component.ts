@@ -10,7 +10,7 @@ import { IItem } from '../interfaces';
   templateUrl: './item-edit.component.html',
   styleUrls: ['./item-edit.component.scss'],
 })
-export class ItemEditComponent {
+export class ItemEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
@@ -50,7 +50,7 @@ export class ItemEditComponent {
     // this.id = this.acivatedRoute.snapshot.params['id'];
     const item = { title, description, price };
     this.apiService.updateItem(this.id, item).subscribe({
-      next: () => this.router.navigate([`/items/catalog/${this.id}`]),
+      next: () => this.router.navigate([`items/catalog/${this.id}`]),
       error: (err) => console.log(err),
     });
   }

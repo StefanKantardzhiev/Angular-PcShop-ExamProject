@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from '../core/page-not-found/page-not-found.component';
 import { NewItemComponent } from '../new-item/new-item.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AuthActivate } from '../shared/guards/auth.activate';
@@ -13,9 +14,7 @@ const routes: Routes = [
     canActivate:[AuthActivate],
     data: {
       title: 'Login',
-      data: {
-        guest: true,
-      },
+      "guest": true,
     },
   },
   {
@@ -24,25 +23,17 @@ const routes: Routes = [
     canActivate:[AuthActivate],
     data: {
       title: 'Register',
-      guest: true,
+      "guest": true,
+
     },
   },
   {
     path: 'auth/logout',
     component: LogoutComponent,
-    canActivate:[AuthActivate],
+
     data: {
-      title: 'Logout',
-      guest: false,
-    },
-  },
-  {
-    path: 'auth/profile',
-    component: ProfileComponent,
-    data: {
-      title: 'Profile',
-      guest: false,
-    },
+        "guest": false,
+      },
   },
 ];
 

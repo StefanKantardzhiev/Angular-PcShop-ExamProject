@@ -24,7 +24,7 @@ export class AuthService {
 
   register(email: string, password: string, img: string) {
     return this.http
-      .post<IUser>(`${apiUrl}auth/register`, { email, password, img })
+      .post<IUser>(`${apiUrl}/auth/register`, { email, password, img })
       .pipe(
         tap((user) => {
           this.user = user;
@@ -35,7 +35,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<IUser>(`${apiUrl}auth/login`, { email, password })
+      .post<IUser>(`${apiUrl}/auth/login`, { email, password })
       .pipe(
         tap((user) => {
           this.user = user;
