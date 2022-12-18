@@ -1,6 +1,27 @@
-# PcShop App
+# PcBuildz - PCSHOP - Angular Exam Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+Single Page Application created with Angular FE, Node.JS/Express.js for BE and MongoDB.  
+
+![image](https://prnt.sc/vbHdDt-5je17)
+
+This app is considered to be a PC Shop and it has the following options in it:
+
+Registering and logging users with quick links in the forms of login and register,as well as a guard checking if the user is Logged or not.
+
+Registered and new users will be able to see the home,but only the new ones will be able to see the latest builds.
+When the user registers or login , he will be able to see all of the offers, as well as edit and delete buttons if owner.
+
+
+Every user can upload their own photos, add title, description, price and attach a link for their photos. When creating/deleting a pc build.At every stage of the creation and/or editing the user will be reminded by errors if the forms are not correctly filled.If everything is OK, users will be able to access and edit/delete all of the content related to them.
+
+
+If a user is an owner of a build, he will be able to do the above, as well, he will be able to see all of his 'buildz' in the profile section, from where as well , he will be able to edit/delete his own 'buildz'
+
+
+
+![image](https://prnt.sc/vbHdDt-5je17)
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 ## Development server
 
@@ -14,14 +35,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
 ## Further help
 
+Contact us at : https://github.com/StefanKantardzhiev (for PcBuildz)
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ItemsListComponent } from './items-list/items-list.component';
-import { RecentItemsComponent } from './recent-items/recent-items.component';
+import { RecentItemsComponent } from './shared/recent-items/recent-items.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';

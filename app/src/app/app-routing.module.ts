@@ -8,7 +8,7 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { NewItemComponent } from './new-item/new-item.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RecentItemsComponent } from './recent-items/recent-items.component';
+import { RecentItemsComponent } from './shared/recent-items/recent-items.component';
 import { AuthActivate } from './shared/guards/auth.activate';
 
 const routes: Routes = [

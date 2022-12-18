@@ -17,9 +17,10 @@ export class ProfileComponent {
   ) {}
 
   get user() {
-    const { email } = this.authService.user!;
+    const { email, img } = this.authService.user!;
     return {
       email,
+      img,
     };
   }
 

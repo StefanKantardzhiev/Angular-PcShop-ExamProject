@@ -51,31 +51,33 @@ h1 {
 }
 
 .products .product_item p {
-    width: 400px;
+    width: 100%;
     color: rgb(0, 0, 0);
     font-size: 30px;
     line-height: 20px;
     // background-color: #252525;
     font-weight: 300;
     // margin:0 0;
-    margin-left: 10%;
+    margin-left: 5%;
     padding: 0 0;
     transition: ease-in all 0.5s;
+    text-align: left;
+    margin-top: 10px;
 }
 
 
 .btn {
     display: inline-block;
     background: white;
-    border: 10px solid darken(white, 5%);
+    border: 3px solid darken(white, 5%);
     padding: .5em 2em;
     margin-top: 22px;
-    color: #943603;
+    color: rgb(70, 1, 110) 25%; 
     margin-right: .5em;
     box-shadow: inset 0px 1px 0px fadeout(white, 80%);
 
     &:hover {
-        background: lighten(#891601, 5%);
+        background: rgb(70, 1, 110) 25%;
         color: white;
     }
 

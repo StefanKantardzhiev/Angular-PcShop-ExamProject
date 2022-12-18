@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { IItem } from '../interfaces/item';
+import { ApiService } from '../../api.service';
+import { IItem } from '../../interfaces/item';
 
 @Component({
   selector: 'app-recent-items',

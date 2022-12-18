@@ -51,10 +51,10 @@ body {
   h2 {
     width: 100%;
     color: lighten(white, 20%);
-    font-family: 'open sans condensed';
+    font-family: 'Comic-Sans',cursive;
     font-size: 1.35em;
     display: block;
-    background: #a14203;
+    background: rgb(70, 1, 110) 25%; 
     width: 100%;
     text-transform: uppercase;
     padding: .75em 1em .75em 1.5em;
@@ -74,7 +74,7 @@ body {
     border: none;
     border-bottom: 1px solid #eaeaea;
     padding-bottom: 1.25em;
-    color: #822b03;
+    color: rgb(70, 1, 110) 25%; 
 
     &:focus {
       outline: none;
@@ -86,12 +86,12 @@ body {
     background: white;
     border: 1px solid darken(white, 5%);
     padding: .5em 2em;
-    color: #943603;
+    color: rgb(70, 1, 110) 25%; 
     margin-right: .5em;
     box-shadow: inset 0px 1px 0px fadeout(white, 80%);
 
     &:hover {
-      background: lighten(#891601, 5%);
+      background: rgb(70, 1, 110) 25%; 
       color: white;
     }
 
@@ -106,7 +106,7 @@ body {
   }
 
   .existing {
-    color: lighten(#874201, 10%);
+    color: rgb(70, 1, 110) 25%; 
     line-height: .10em;
     position: relative;
     top: 2.5em;
@@ -117,7 +117,7 @@ body {
     float: right;
 
     &:hover {
-      color: darken(rgb(120, 4, 4), 5%);
+      color: rgb(70, 1, 110) 25%; 
     }
 
     &:active {

@@ -17,7 +17,7 @@
 
       <input type="text" placeholder="price" formControlName="price" required min="5"/>
       <p class="error" *ngIf="form.get('price')?.touched && form.get('price')?.errors?.['min']">
-        Price must be at least 5 GBP!
+        Price must be at least 5 Euro!
       </p>
 
       <button  type="submit" class="btn">Change</button>
