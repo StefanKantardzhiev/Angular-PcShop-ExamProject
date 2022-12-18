@@ -62,10 +62,6 @@ const routes: Routes = [
       guest: false,
     },
   },
-  {
-    path: '**',
-    component: PageNotFoundComponent,
-  },
 ];
 
 @NgModule({

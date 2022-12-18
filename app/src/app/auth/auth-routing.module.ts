@@ -30,10 +30,10 @@ const routes: Routes = [
   {
     path: 'auth/logout',
     component: LogoutComponent,
-
-    data: {
-        "guest": false,
-      },
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 
