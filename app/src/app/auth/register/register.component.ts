@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { setSession } from '../../shared/session/session';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class RegisterComponent {
   form = this.fb.group({
     email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(5)]],
+    img: ['', [Validators.required]]
   });
 
   constructor(
@@ -20,14 +22,17 @@ export class RegisterComponent {
     private router: Router
   ) {}
 
-  registerHandler() {
+  registerHandler(): void {
     if (this.form.invalid) {
       return;
     }
-    const { email, password } = this.form.value;
-    this.authService.register(email!, password!).subscribe((user) => {
-      this.authService.user = user;
-      this.router.navigate(['/items/catalog']);
+    const { email, password, img } = this.form.value;
+    this.authService.register(email!, password!, img!).subscribe({
+      next: (user) => {
+        setSession(user);
+        this.authService.setLoginInfo(user, true);
+        this.router.navigate(['/']);
+      },
     });
   }
 }

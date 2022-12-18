@@ -1,17 +1,15 @@
-<div class="products" >
-   <div class="our_products">
-     <div class="row" *ngFor="let item of recentList">
-       <div class="col-md-4 margin_bottom1">
-         <div class="product_box">
-           <figure>
-             <img
-               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAMCJFc2pObsJgTuDdo0UH6Cpc_9Dje18IJw&usqp=CAU"
-               alt="#"
-             />
-           </figure>
-           <h3>{{ item.title }}<br /><br />{{ item.price }}</h3>
-         </div>
-       </div>
-     </div>
-   </div>
- 
+<div class="our_products" *ngFor="let recent of recentList">
+  <div class="product_box" >
+    <figure>
+      <img
+        src="{{recent.img}}"
+        alt="#"
+      />
+    </figure>
+    <h3><a href="items/catalog/:id"></a>{{ recent.title }}</h3>
+     <h3>{{ recent.price }} Euro</h3><br>
+     <div  class="product_box" *ngFor="let item of recent.description">
+      <p>{{item}}</p>
+    </div>
+  </div>
+</div>

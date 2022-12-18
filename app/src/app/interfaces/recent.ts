@@ -4,10 +4,8 @@ export interface IRecent {
   _id: string;
   title: string;
   description: string;
-  price: string;
+  price: number;
   img: string;
-  userId: IUser;
-  created_at: string[];
-  updatedAt: string[];
-  __v: number;
+  _ownerId: IUser;
+  likes: [];
 }

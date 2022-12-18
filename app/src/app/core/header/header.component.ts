@@ -8,13 +8,12 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  constructor(private authService: AuthService, private router: Router) {}
+
   get isLoggedIn() {
     return this.authService.isLoggedIn;
   }
-  get user(){
+  get user() {
     return this.authService.user;
   }
-
-
-  constructor(private authService: AuthService, private router: Router) {}
 }

@@ -1,27 +1,17 @@
-.products {
-    background:  rgb(70, 1, 110) 25%;
-    text-align: center;
-    font-family: "Comic-Sans",cursive;
-    color:white;
-    font-size: 30px;
-    font-style: italic;
-}
-
-
 
 .our_products {
+    text-align: center;
+    margin-top:30px;
     background-color: #fff;
     padding: 50px 50px;
-    display: grid;
+    display: inline-block;
     justify-content: center;
-    grid-template-columns:  400px 400px 400px; /*Make the grid smaller than the container*/
-    gap: 7%;
+    // grid-template-columns:  300px 300px 300px; /*Make the grid smaller than the container*/
 
 }
 
 .our_products .product_box {
     text-align: center;
-    margin-bottom: 30px;
 }
 
 .our_products .product_box figure {
@@ -29,15 +19,30 @@
 }
 
 .our_products .product_box h3 {
-    width: 200px;
+    width: 300px;
     color: #fff;
     font-size: 20px;
     line-height: 20px;
     background-color: #252525;
-    font-weight: 500;
+    font-weight: 100px;
     margin: 0 auto;
     padding: 10px 0;
-    margin-top: 40px;
+    transition: ease-in all 0.5s;
+}
+.our_products .product_box a{
+    text-decoration: none;
+    
+}
+
+.our_products .product_box p {
+    width: 400px;
+    color: #fff;
+    font-size:15px;
+    line-height: 20px;
+    background-color: #252525;
+    font-weight: 300;
+    margin:0 0;
+    padding: 0 0;
     transition: ease-in all 0.5s;
 }
 
@@ -46,6 +51,6 @@
    transition: ease-in all 0.5s;
 }
 
-.margin_bottom1 {
-    margin-bottom: 10px;
-}
+// col-md-4 .margin_bottom1 {
+//     margin-bottom: 10px;
+// }

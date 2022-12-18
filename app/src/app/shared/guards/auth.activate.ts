@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
 import {
+  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
   RouterStateSnapshot,
   UrlTree,
-} from '@angular/router'
-import { Observable, UnsubscriptionError } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+} from '@angular/router';
+import { map, Observable, take } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
 
-Injectable({
+@Injectable({
   providedIn: 'root',
-});
-
-
-export class AuthActivate implements CanActivate{
-    constructor(private authService:AuthService,private router:Router){}
-
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        const loginRequired = route.data['loginRequired']
-        if(loginRequired === undefined || this.authService.isLoggedIn === loginRequired){return true}
-        const returnUrl = route.url.map(u=>u.path).join('/');
-        return this.router.createUrlTree(['/auth/login'],{queryParams:{returnUrl}})
+})
+export class AuthActivate implements CanActivate {
+  constructor(private apiService: ApiService, private router: Router) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+    const { guest } = route.data;
+    const token = localStorage.getItem('token');
+    if (!token && guest == true) {
+      return true;
+    } else if (token && guest == false) {
+      return true;
     }
+    return this.router.parseUrl('/not-found');
+  }
 }

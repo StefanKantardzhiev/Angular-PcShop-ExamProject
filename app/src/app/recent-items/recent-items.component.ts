@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { IRecent } from '../interfaces/recent';
+import { IItem } from '../interfaces/item';
 
 @Component({
   selector: 'app-recent-items',
   templateUrl: './recent-items.component.html',
   styleUrls: ['./recent-items.component.scss'],
 })
-export class RecentItemsComponent implements OnInit  {
-  recentList: IRecent[] | null = null;
+export class RecentItemsComponent implements OnInit {
+  recentList: IItem[] | null = null;
 
   constructor(private apiService: ApiService) {}
 

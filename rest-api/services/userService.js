@@ -7,7 +7,7 @@ const secret = 'q-90234xcwmietvuselrg';
 
 const tokenBlacklist = new Set();
 
-async function register(email, password) {
+async function register(email, password, img) {
     const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if (existing) {
         throw new Error('Email is taken');
@@ -15,6 +15,7 @@ async function register(email, password) {
 
     const user = await User.create({
         email,
+        img,
         hashedPassword: await bcrypt.hash(password, 10)
     });
 

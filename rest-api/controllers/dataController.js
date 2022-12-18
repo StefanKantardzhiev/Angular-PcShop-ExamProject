@@ -7,28 +7,28 @@ const { parseError } = require('../util/parser');
 
 dataController.get('/', async (req, res) => {
     let items = [];
-    if (req.query.where) {
-        const userId = JSON.parse(req.query.where.split('=')[1]);
-        items = await getByUserId(userId);
-    } else {
+    // if (req.query.where) {
+    //     const userId = JSON.parse(req.query.where.split('=')[1]);
+    //     items = await getByUserId(userId);
+    // } else {
         items = await getAll();
-    }
     res.json(items);
 });
 
 
-dataController.get('/', async (req, res) => {
+dataController.get('/:userId', async (req, res) => {
     let items = [];
     if (req.query.where) {
         const userId = JSON.parse(req.query.where.split('=')[1]);
         items = await getByUserId(userId);
-    } else {
-        items = await getAll();
     }
+    // } else {
+    //     items = await getAll();
+    // }
     res.json(items);
 });
 
-dataController.post('/', hasUser(), async (req, res) => {
+dataController.post('/create', hasUser(), async (req, res) => {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body);
         const item = await create(data);
@@ -39,13 +39,13 @@ dataController.post('/', hasUser(), async (req, res) => {
     }
 });
 
-dataController.get('/:id', async (req, res, next) => {
-    const item = await getById(req.params.id);
+dataController.get('/:id', async (req, res) => {
+    const item = await getById(req.params._id);
     res.json(item);
 });
 
 dataController.put('/:id', hasUser(), async (req, res, next) => {
-    const item = await getById(req.params.id);
+    const item = await getById(req.params._id);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
@@ -60,13 +60,13 @@ dataController.put('/:id', hasUser(), async (req, res, next) => {
 });
 
 dataController.delete('/:id', hasUser(), async (req, res) => {
-    const item = await getById(req.params.id);
+    const item = await getById(req.params._id);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
     try {
-        await deleteById(req.params.id);
+        await deleteById(req.params._id);
         res.status(204).end();
     } catch (err) {
         const message = parseError(err);

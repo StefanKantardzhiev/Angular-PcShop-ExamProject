@@ -1,0 +1,30 @@
+<!--[formGroup]="form"  -->
+<div class="profile">
+  <form (ngSubmit)="saveProfile()">
+    <img src="{{ user.img }}" alt="default user" />
+
+    <h3>User Info:</h3>
+    <div class="flex">
+      <p>Email:</p>
+      <p>
+        <input *ngIf="showEditMode" type="text" formControlName="email" />
+        <ng-container *ngIf="!showEditMode">{{ user.email }}</ng-container>
+      </p>
+    </div>
+    <div class="flex">
+        <p>Image URL:</p>
+        <p>
+        <input *ngIf="showEditMode" type="url" formControlName="img" />
+        <ng-container *ngIf="!showEditMode">{{ user.img }}</ng-container>
+      </p>
+    </div>
+  </form>
+  <button
+    class="edit-button"
+    (click)="showEditMode ? undefined : toggleEditMode()"
+    [type]="showEditMode ? 'submit' : 'button'"
+  >
+    <ng-container *ngIf="showEditMode">Save</ng-container>
+    <ng-container *ngIf="!showEditMode">D</ng-container>
+  </button>
+</div>

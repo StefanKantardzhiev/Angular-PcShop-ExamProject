@@ -5,23 +5,26 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { RecentItemsComponent } from './recent-items/recent-items.component';
-import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { appInterceptorProvider } from './app.interceptor';
-import { AuthenticateComponent } from './authenticate/authenticate.component';
-
-
-
+import { NewItemComponent } from './new-item/new-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+import { RouterModule } from '@angular/router';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemsListComponent,
     RecentItemsComponent,
-    MainComponent,
-    AuthenticateComponent,
+    NewItemComponent,
+    ProfileComponent,
+    ItemDetailComponent,
+    ItemEditComponent
   ],
   imports: [
     AppRoutingModule,
@@ -30,6 +33,8 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     HttpClientModule,
     SharedModule,
     AuthModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],

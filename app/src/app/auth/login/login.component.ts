@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { setSession } from '../../shared/session/session';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,20 +16,35 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  
+  form = this.fb.group({
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
+  });
+
   constructor(
-    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private fb: FormBuilder
   ) {}
 
-  loginHandler(form: NgForm): void {
-    if (form.invalid) {
+  errors: string | undefined = undefined;
+
+  loginHandler(): void {
+    if (this.form.invalid) {
       return;
     }
-    const { email, password } = form.value;
-    this.authService.login(email!, password!).subscribe((user) => {
-      this.authService.user = user;
-      this.router.navigate(['/items/catalog']);
+    const { email, password } = this.form.value;
+
+    this.authService.login(email!, password!).subscribe({
+      next: (user) => {
+        setSession(user);
+        this.authService.setLoginInfo(user, true);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        throw new Error(err)
+      },
     });
   }
 }

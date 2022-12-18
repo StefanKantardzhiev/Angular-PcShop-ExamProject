@@ -2,6 +2,9 @@
 header {
     // background: rgb(115, 0, 182);
     background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(70, 1, 110) 25%);
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 header ul {

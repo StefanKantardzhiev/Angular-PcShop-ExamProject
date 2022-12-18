@@ -3,40 +3,88 @@ const { body, validationResult } = require('express-validator');
 
 const { register, login, logout } = require('../services/userService');
 const { parseError } = require('../util/parser');
-
+const { userModel, tokenBlacklistModel } = require('../models')
+const utils = require('../utils')
+const { authCookieName } = require('../app-config')
+const bsonToJson = (data) => { return JSON.parse(JSON.stringify(data)) };
+const removePassword = (data) => {
+    const { password, __v, ...userData } = data;
+    return userData
+}
+const path = require('path')
 
 authController.post('/register',
-    body('email').isEmail().withMessage('Invalid email'),
-    body('password').isLength({ min: 3 }).withMessage('Password must be at least 3 characters long'),
-    async (req, res) => {
-        try {
-            const { errors } = validationResult(req);
-            if (errors.length > 0) {
-                throw errors;
-            }
+    async (req, res, next) => {
+        const { email, password, img } = req.body;
 
-            const token = await register(req.body.email, req.body.password);
-            res.json(token);
-        } catch (error) {
-            const message = parseError(error);
-            res.status(400).json({ message });
-        }
+        return userModel.create({ email, password, img })
+            .then((createdUser) => {
+                createdUser = bsonToJson(createdUser);
+                createdUser = removePassword(createdUser);
+
+                const token = utils.jwt.createToken({ id: createdUser._id });
+
+                if (process.env.NODE_ENV === 'production') {
+                    res.cookie(token)
+                } else {
+                    res.cookie(token)
+                }
+                res.status(200)
+                    .send(createdUser);
+            })
+            .catch(err => {
+                if (err.name === 'MongoError' && err.code === 11000) {
+                    let field = err.message.split("index: ")[1];
+                    field = field.split(" dup key")[0];
+                    field = field.substring(0, field.lastIndexOf("_"));
+
+                    res.status(409)
+                        .send({ message: `This ${field} is already registered!` });
+                    return;
+                }
+                next(err);
+            });
     });
 
-authController.post('/login', async (req, res) => {
-    try {
-        const token = await login(req.body.email, req.body.password);
-        res.json(token);
-    } catch (error) {
-        const message = parseError(error);
-        res.status(401).json({ message });
-    }
+authController.post('/login', async (req, res, next) => {
+    const { email, password } = req.body;
+
+    userModel.findOne({ email })
+        .then(user => {
+            return Promise.all([user, user ? user.matchPassword(password) : false]);
+        })
+        .then(([user, match]) => {
+            if (!match) {
+                res.status(401)
+                    .send({ message: 'Wrong email or password' });
+                return
+            }
+            user = bsonToJson(user);
+            user = removePassword(user);
+
+            const token = utils.jwt.createToken({ id: user._id });
+
+            if (process.env.NODE_ENV === 'production') {
+                res.cookie(token)
+            } else {
+                res.cookie(token)
+            }
+            res.status(200)
+                .send(user);
+        })
+        .catch(next);
 });
 
 authController.get('/logout', async (req, res) => {
-    const token = req.token;
-    await logout(token);
-    res.status(204).end();
+    const token = req.cookies[cookie];
+
+    tokenBlacklistModel.create({ token })
+        .then(() => {
+            res.clearCookie(token)
+                .status(204)
+                .send({ message: 'Logged out!' });
+        })
+        .catch(err => res.send(err));
 });
 
 module.exports = authController;
