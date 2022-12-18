@@ -2,7 +2,6 @@
 
 Single Page Application created with Angular FE, Node.JS/Express.js for BE and MongoDB.  
 
-![image](https://prnt.sc/vbHdDt-5je17)
 
 This app is considered to be a PC Shop and it has the following options in it:
 
@@ -17,9 +16,6 @@ Every user can upload their own photos, add title, description, price and attach
 
 If a user is an owner of a build, he will be able to do the above, as well, he will be able to see all of his 'buildz' in the profile section, from where as well , he will be able to edit/delete his own 'buildz'
 
-
-
-![image](https://prnt.sc/vbHdDt-5je17)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
