@@ -40,3 +40,6 @@ Server runs on http://localhost:3000/
 
 Contact me at : https://github.com/StefanKantardzhiev (for PcBuildz)
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+![image](https://user-images.githubusercontent.com/103639205/217248702-c159dcde-8823-4f95-b6e5-390e362e4f47.png)
+
