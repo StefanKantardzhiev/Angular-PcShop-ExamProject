@@ -1,5 +1,7 @@
 # PcBuildz - PCSHOP - Angular Exam Project
 
+![image](https://user-images.githubusercontent.com/103639205/217245665-a7754780-1545-4763-8620-dbefa794da7e.png)
+
 Single Page Application created with Angular FE, Node.JS/Express.js for BE and MongoDB.  
 
 
@@ -17,21 +19,24 @@ Every user can upload their own photos, add title, description, price and attach
 If a user is an owner of a build, he will be able to do the above, as well, he will be able to see all of his 'buildz' in the profile section, from where as well , he will be able to edit/delete his own 'buildz'
 
 
+Here is a brief Demo : 
+https://clipchamp.com/watch/h1QZ5xPJ9Fm?_ga=2.9634547.792769540.1675772248-1754910383.1675772248 
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-## Development server
-
+In the folder app where the actual Angular App is :
+Run  npm install
+Run  npm start or 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+In the folder rest-api , in order to run the backEnd : 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run npm i
+Run npm start
 
-## Build
+Server runs on http://localhost:3000/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Further help
-
-Contact us at : https://github.com/StefanKantardzhiev (for PcBuildz)
+Contact me at : https://github.com/StefanKantardzhiev (for PcBuildz)
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
